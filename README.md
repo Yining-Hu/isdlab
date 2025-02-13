@@ -22,7 +22,7 @@ Then, open a web browser & visit: `http://localhost:8080`
 
 To run unit tests: `mvn test`
 
-## Help Installing Maven
+## Install Maven
 
 ### Mac Users
 
