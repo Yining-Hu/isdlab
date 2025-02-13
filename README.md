@@ -107,4 +107,4 @@ Servlets run inside a Servlet container (e.g., Apache Tomcat, Jetty). You need t
 Create Servlet classes and configure them according to the workshop materials on Canvas.
 
 # Acknowledgement
-This project is based on the original repo: https://github.com/jiak1/ISDAutLab-VsCode. Thanks to them for their work!
+This project is based on the original repo: https://github.com/jiak1/ISDAutLab-VsCode. Thanks to @jiak1 for their work!
