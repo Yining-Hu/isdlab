@@ -1,6 +1,6 @@
-# Introduction to Software Development
+# Introduction to Software Development (ISD)
 
-This repo contains the code for the labs in Jacks classes each week. This repo is for VsCode users, if you wish to use Netbeans, please visit this repo: https://github.com/jiak1/ISDAutLab-Netbeans
+This repo provides a Maven version of the ISD labs for VS Code users. 
 
 Make sure you first install:
 
@@ -53,3 +53,58 @@ Find the PATH Variable under user variables & click edit. On the next screen, ad
 ![Alt text](images/uservar.PNG?raw=true 'User Variables')
 
 Close all the menus, reload a terminal window & you can confirm maven was succesfully installed by running `mvn` in your terminal.
+
+## Connect with a database
+You need to set up a local database. In this project, we are using the MariaDB, a popular open source relational databases. MariaDB is included as a dependency on pom.xml. The driver name is ```org.mariadb.jdbc.Driver```, and the default url is ```jdbc:mariadb://<host>:<port>/<database>```
+
+## Enable Servlets in a Maven project
+
+### Add the Servlet API dependency
+
+Servlets rely on the Java Servlet API, which is not part of the standard Java SE library. You need to include the Servlet API as a dependency in your Maven project.
+
+```
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version>
+    <scope>provided</scope>
+</dependency>
+```
+
+### Configure the project structure
+
+A Servlet-based web application requires a specific directory structure (e.g., src/main/webapp for web resources like HTML, JSP, and WEB-INF).
+
+```
+src/
+  main/
+    java/       # Java source files (e.g., Servlets)
+    resources/  # Configuration files (e.g., properties, XML)
+    webapp/     # Web resources (e.g., HTML, JSP, CSS, JS)
+      WEB-INF/  # Configuration files (e.g., web.xml)
+```
+
+### Set up a Servlet container
+
+Servlets run inside a Servlet container (e.g., Apache Tomcat, Jetty). You need to configure your project to work with a Servlet container for deployment and testing. Add the below code in your pom.xml.
+
+```
+<plugin>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-maven-plugin</artifactId>
+    <version>${jettyVersion}</version>
+    <configuration>
+        <httpConnector>
+            <port>8080</port>
+        </httpConnector>
+    </configuration>
+</plugin>
+```
+
+### Write and configure Servlets
+
+Create Servlet classes and configure them according to the workshop materials on Canvas.
+
+# Acknowledgement
+This project is based on the original repo: https://github.com/jiak1/ISDAutLab-VsCode. Thanks to them for their work!

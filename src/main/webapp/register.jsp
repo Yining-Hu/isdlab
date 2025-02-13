@@ -1,105 +1,40 @@
+<%-- 
+    Document   : register
+    Created on : 15/01/2024, 4:35:16 PM
+    Author     : yih
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.Random"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style>
-            body {
-                background: url('feit.jpg') no-repeat center center; /*center center fixed; */
-                /*
-                -webkit-background-size: cover;
-                -moz-background-size: cover;
-                -o-background-size: cover;
-                background-size: cover;  
-                */
-                width: 200px;
-                height: 200px;
-                background-size: contain;
-                border-radius: 50%;
-                letter-spacing: 4px;
-                font-family: Arial, Helvetica, sans-serif;
-            }
-
-            #bar {
-                position: fixed;
-                background-color: #134c5b;
-                padding: 10px 5px 6px 15px;
-                color: white;
-                font-size: 30px;
-                font-weight: bold;
-                top: 0;
-                left: 0;
-                right: 0;
-                opacity: 0.7;
-            }
-
-            #links {
-                font-size: 18px;
-                padding: 5px;
-                word-spacing: 2px;
-                float: right;
-            }
-
-            .footer {
-                position: fixed;
-                background-color: #134c5b;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                font-size: 36px;
-                color: #afeb00;
-                padding: 3px;
-                text-align: center;
-                opacity: 0.7;
-            }
-
-            .message {
-                color: #4caf50;
-                font-weight: bold;
-                font-size: 20px;
-            }
-
-            input {
-                margin-bottom: 16px;
-            }
-
-        </style>
-        <title>Register</title>
+        <title>Registration Page</title>
     </head>
-    <body >
+    <body>
+        <div><span class="time" id="time"></span></div>
         <%
-            String email = request.getParameter("email");
-            String name = request.getParameter("name");
-            String tos = request.getParameter("tos");
-            String submitted = request.getParameter("submitted");
+            String existErr = (String) session.getAttribute("existErr");
+            String emailErr = (String) session.getAttribute("emailErr");
+            String passErr = (String) session.getAttribute("passErr");
+            String nameErr = (String) session.getAttribute("nameErr");
         %>
-        <% if (submitted != null) { %>
-            <h1>Welcome</h1>
-            <h2>Email: <%= email%></h2>
-            <h2>Name: <%= name%></h2>
-
-        <% } else { %>
-        <form>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="email" required/>
-            <label for="name">Name:</label>
-            <input name="name" id="name" placeholder="name" />
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" placeholder="password" />
-            <label for="gender">Gender:</label>
-            <input name="gender" id="gender" placeholder="gender" />
-            <label for="favcol">Favourite Colour:</label>
-            <input type="color" name="favcol" id="favcol" placeholder="favcol" />
-            <br/>
-            <label for="tos">TOS:</label>
-            <input type="checkbox" name="tos" id="tos" placeholder="tos" />
-            <br/>
-            <input type="hidden" name="submitted" id="submitted" value="true" />
-            <button type="submit">Register Account</button>
+        <h1>Sign Up<span class="message"><%=(existErr != null ? existErr : "")%></span></h1>
+        <!--<form action="welcome.jsp" method="post">-->
+        <form action="RegisterController" method="post">
+            <table id="form_table">
+                <tr><td>Email:</td><td><input type="text" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>" name="email" required"></td></tr>
+                <tr><td>Full Name:</td><td><input type"text" placeholder="<%=(nameErr != null ? nameErr : "Enter name")%>" name="name" required></td></tr>
+                <tr><td>Password:</td><td><input type="text" placeholder="<%=(passErr != null ? passErr : "Enter password")%>" name="password" required></td></tr>
+                <!--                <tr><td>Full Name:</td><td><input type"text" placeholder="Enter name" name="name" required></td></tr>
+                <tr><td>Password:</td><td><input type="text" placeholder="Enter password" name="name" required></td></tr>-->
+                <tr><td>Gender:</td><td><input type="text" placeholder="Enter gender" name="gender" required></td></tr>
+                <tr><td>Favourite Colour:</td><td><input type="text" placeholder="Enter favourite colour" name="favouriteColour" required></td></tr>
+            </table>
+            <div>
+                <a class="button" href="index.jsp">Cancel</a>
+                <input class="button" type="submit" value="Sign Up">
+            </div>
         </form>
-
-        <button><a href="/">Cancel Registration</a></button>
-        <% } %>
     </body>
 </html>
