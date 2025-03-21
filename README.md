@@ -4,8 +4,8 @@ This repo provides a Maven version of the ISD labs for VS Code users.
 
 Make sure you first install:
 
-- Java JDK (https://www.oracle.com/au/java/technologies/downloads/)
-- Maven (https://maven.apache.org/download.cgi) Select the **binary version** not Source
+- Java JDK (https://www.oracle.com/au/java/technologies/downloads/). In this sample project, we use Java 17.
+- Maven (https://maven.apache.org/download.cgi) Select the **binary version** not Source. In this sample project, we use Maven 3.8.8. 
 
 To Run The Project:
 
@@ -31,7 +31,7 @@ Macos Users will need to edit their bash_profile file in ~/.bash_profile
 Please add the following (Update the path to be wherever you downloaded the maven folder):
 
 ```
-export M2_HOME="/Users/jack/Downloads/apache-maven-3.6.3"
+export M2_HOME="/Users/jack/Downloads/apache-maven-<version>"
 PATH="${M2_HOME}/bin:${PATH}"
 export PATH
 ```
@@ -56,6 +56,8 @@ Close all the menus, reload a terminal window & you can confirm maven was succes
 
 ## Connect with a database
 You need to set up a local database. In this project, we are using the MariaDB, a popular open source relational databases. MariaDB is included as a dependency on pom.xml. The driver name is ```org.mariadb.jdbc.Driver```, and the default url is ```jdbc:mariadb://<host>:<port>/<database>```
+
+Additionally, we also introduce MongoDB, a widely-used non-relational database. It stores data in json-like documents. You can either set up a local MongoDB server or use the remote MongoDB Atlas server which offers a free-tier option. We use version 5.3.0 for both the MongoDB Java Driver and BSON, and connect to MongoDB Atlas. On the MongoDBTest class, you can find an example of how we connect to the database and perform simple CRUD operations.
 
 ## Enable Servlets in a Maven project
 
