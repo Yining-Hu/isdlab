@@ -65,9 +65,8 @@ public class DBManager {
        st.executeUpdate("DELETE FROM tf.Users WHERE EMAIL='"+email+"'");
     }
     
-    // rea dall Users rows and store the results into ResultSet
+    // read all Users rows and store the results into ResultSet
     // then iterate through the set and read every attribute by index
-    // 
     public ArrayList<User> fetchUsers() throws SQLException{
         String fetch = "select * from Users";
         ResultSet rs = st.executeQuery(fetch);

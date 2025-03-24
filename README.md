@@ -22,6 +22,8 @@ Then, open a web browser & visit: `http://localhost:8080`
 
 To run unit tests: `mvn test`
 
+To run a specific class, for example, the MongoDBTest class of the tf.isd.controller package: `mvn exec:java -Dexec.mainClass="tf.isd.controller.MongoDBTest"`, you can also add the `-Dexec.cleanupDaemonThreads=false` option to prevent issues with backgroun threads.
+
 ## Install Maven
 
 ### Mac Users
