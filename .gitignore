@@ -7,3 +7,4 @@ lib/*
 !target/*.war
 !target/Dockerfile
 keys
+.github/workflows/
