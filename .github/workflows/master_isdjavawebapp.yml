@@ -66,38 +66,38 @@ jobs:
   #         package: 'isdlabs-0.1.war'
 
   deploy:
-  runs-on: windows-latest
-  needs: build
-  environment:
-    name: 'Production'
-    url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-  permissions:
-    id-token: write
-    contents: read
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write
+      contents: read
 
-  steps:
-    - name: Download artifact from build job
-      uses: actions/download-artifact@v4
-      with:
-        name: java-app
-        path: .     # ✅ Extract to current directory
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: java-app
+          path: .     # ✅ Extract to current directory
 
-    - name: List files to verify .war is present
-      run: dir
+      - name: List files to verify .war is present
+        run: dir
 
-    - name: Login to Azure
-      uses: azure/login@v2
-      with:
-        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_906EC7F391A244ED946BA42FE8E503BC }}
-        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_04478F9CDC8E4FED9E18C2E3EE4B5A1A }}
-        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_448E7842348F44E0977FC3B8DD0A0D47 }}
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_906EC7F391A244ED946BA42FE8E503BC }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_04478F9CDC8E4FED9E18C2E3EE4B5A1A }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_448E7842348F44E0977FC3B8DD0A0D47 }}
 
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v3
-      with:
-        app-name: 'ISDJavaWebApp'
-        slot-name: 'Production'
-        package: 'isdlabs-0.1.war'   # ✅ This file will now exist in the root dir
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'ISDJavaWebApp'
+          slot-name: 'Production'
+          package: 'isdlabs-0.1.war'   # ✅ This file will now exist in the root dir
 
           
