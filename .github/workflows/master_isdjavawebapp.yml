@@ -63,5 +63,5 @@ jobs:
         with:
           app-name: 'ISDJavaWebApp'
           slot-name: 'Production'
-          package: '*.war'
+          package: 'isdlabs-0.1.war'
           
